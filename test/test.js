@@ -22,6 +22,7 @@ describe('regex', function () {
     assert.equal(f('beep x=123123 boop'), '123123', 'beep x=123123 boop')
   })
 
+
   it(`匹配8位 hex 代码，以'0x'开头，后面跟着两个字符可以是大写'A-F'，小写'a-f'，或者任意数字`, function () {
     const f = require('../lib/quantified_group')
 
@@ -66,29 +67,29 @@ describe('regex', function () {
     assert.deepEqual(f('empty ""'), ['""'], 'empty ""')
   })
 
-  it(`将'@@...@@'markdown语法变成'<blink>...</blink>'`, function () {
-    const f = require('../lib/blink')
-    
-    assert.equal(
-      f('@@whatever@@').trim(),
-      '<p><blink>whatever</blink></p>',
-      '@@whatever@@'
-    )
-    assert.equal(
-      f('*abc* @@def@@ __ghi__').trim(),
-      '<p><em>abc</em> <blink>def</blink> <strong>ghi</strong></p>',
-      '*abc* @@def@@ __ghi__'
-    )
-    assert.equal(
-      f('@@**cool**@@').trim(),
-      '<p><blink><strong>cool</strong></blink></p>',
-      '@@**cool**@@'
-    )
-    assert.equal(
-      f('beep @@boop@@ says *the* @@**robot**@@!').trim(),
-      '<p>beep <blink>boop</blink> says <em>the</em>'
-        + ' <blink><strong>robot</strong></blink>!</p>',
-      'beep @@boop@@ says *the* @@**robot**@@!'
-    )
-  })
+	it(`将'@@...@@'markdown语法变成'<blink>...</blink>'`, function () {
+		const f = require('../lib/blink')
+
+		assert.equal(
+			f('@@whatever@@').trim(),
+			'<p><blink>whatever</blink></p>',
+			'@@whatever@@'
+		)
+		assert.equal(
+			f('*abc* @@def@@ __ghi__').trim(),
+			'<p><em>abc</em> <blink>def</blink> <strong>ghi</strong></p>',
+			'*abc* @@def@@ __ghi__'
+		)
+		assert.equal(
+			f('@@**cool**@@').trim(),
+			'<p><blink><strong>cool</strong></blink></p>',
+			'@@**cool**@@'
+		)
+		assert.equal(
+			f('beep @@boop@@ says *the* @@**robot**@@!').trim(),
+			'<p>beep <blink>boop</blink> says <em>the</em>'
+				+ ' <blink><strong>robot</strong></blink>!</p>',
+			'beep @@boop@@ says *the* @@**robot**@@!'
+		)
+	})
 })
